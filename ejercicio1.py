@@ -96,5 +96,26 @@ class Huffman:
 
             return index_min
 
+        def mostrar_simbolos_codificados(self, simbolo):
+            encontrar = False
+            index = 0
+            codificacion = ""
+
+            for i in range(0,len(self.nodos)):
+                if self.nodos[i].simbolo == simbolo:
+                    encontrar = True
+                    index = i
+                    break
             
+            if encontrar:
+                while index != -1:
+                    codificacion = "%s%s"%(self.nodos[index].codificacion,codificacion)
+                    index= self.nodos[index].longitud
+            else:
+                codificacion = "símbolo no conocido"
+
+            return codificacion
+
+        def construcion_dicionario(self):
+
 
