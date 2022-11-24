@@ -1,31 +1,6 @@
 import os
 
-#class Nodo: 
- #   def __init__(self, value = None): 
-  #      self.value = value
-   #     self.left = None
-  #      self.right = None
-    
-#    def set_valor(self, value):
-      #  self.value = value
 
-   # def get_valor(self):
-    #      return self.value
-    
-   # def nodo_hijo_izq(self, left):
-   #     self.left = left
-   #     return self.left
-    
-   # def nodo_hijo_der(self, right):
-    #    self.right = right
-   #     return self.right
-
-  #  def hueco_izq(self):
-    #    return self.left != None
-    
-   # def hueco_der(self):
-      #  return self.right != None
-    
 
 class Nodo:
     probabilidad = 0.0
@@ -43,8 +18,7 @@ class Huffman:
 
     def __init__(self, simbolo):
         self.simbolo = simbolo
-        self.construir_arbol()
-        self.construir_dict()
+        
 
     def construir_nodos(self,prob):
         for simbolo in prob:
@@ -142,10 +116,12 @@ class Huffman:
 
 
 if __name__ == "__main__": 
-    mensajes = {"A" : 0.2, "F" : 0.17, 1 : 0.13, 3: 0.21, 0: 0.05, "M": 0.09, "T": 0.15 }
-    mensaje = input("Introduzaca el mesaje: ")
-    simbolos = ""
-    p = []
+    
+
+    mensaje = "MT130"
+    simbolos = ["A", "F", 1 , 3 , 0, "M", "T"]
+
+    p = [0.2, 0.17, 0.13, 0.21, 0.05, 0.09, 0.15]
     msm = mensaje
     d = 0
 
@@ -156,9 +132,9 @@ if __name__ == "__main__":
             msm = msm.replace(i, "")
             d += 1
 
-    simbolo = dict(simbolos,p)
+    simbolo = dict(zip(simbolos,p))
 
-    huffman= Huffman()
+    huffman= Huffman(simbolo)
     print("codificando mediante el árbol de huffman...")
     for simbolo in simbolos:
         print("Simbolo: %S, Codificando:%s"%(simbolo,Huffman.mostrar_simbolos_codificados(simbolo)))
@@ -174,4 +150,3 @@ if __name__ == "__main__":
     de= Huffman.descodificar(data)
     print("El códigp binario para descodificar es: ", data)
     print("El mensaje descodificado es: ", de)
-    
