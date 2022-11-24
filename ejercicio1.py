@@ -1,5 +1,4 @@
 import os
-mensajes = {"A" : 0.2, "F" : 0.17, 1 : 0.13, 3: 0.21, 0: 0.05, "M": 0.09, "T": 0.15 }
 
 #class Nodo: 
  #   def __init__(self, value = None): 
@@ -40,7 +39,7 @@ class Huffman:
     root = None
     nodos = []
     prob = {}
-    dicEncoder ={}
+    dictEncoder ={}
 
     def __init__(self, simbolo):
         self.simbolo = simbolo
@@ -117,5 +116,62 @@ class Huffman:
             return codificacion
 
         def construcion_dicionario(self):
+            for simbolo in self.prob:
+                codificacion = self.mostrar_simbolos_codificados(simbolo)
+                self.dictEncoder[simbolo] = codificacion
+
+        def codificacion(slef, p):
+            codificacion = ""
+            for simbolo in p:
+                codificacion = "%s%s"%(codificacion, self.dictEncoder[simbolo])
+            return codificacion
+
+        def descodificar(self):
+            index= 0
+            descodificar=""
+            while index < len(descodificar):
+                encontrar= False
+                aux = descodificar[index]
+
+                for simbolo in self.prob:
+                    if aux.startswith(self.dictEncoder[simbolo]):
+                        descodificar = "%s%s"%(descodificar, simbolo)
+                        index = index + len(self.dictEncoder[simbolo])
+                        break
+            return descodificar
 
 
+if __name__ == "__main__": 
+    mensajes = {"A" : 0.2, "F" : 0.17, 1 : 0.13, 3: 0.21, 0: 0.05, "M": 0.09, "T": 0.15 }
+    mensaje = input("Introduzaca el mesaje: ")
+    simbolos = ""
+    p = []
+    msm = mensaje
+    d = 0
+
+    for i in mensaje:
+        if i in msm:
+            simbolos += i
+            p.append(float(float(msm.count(i))/float(len(mensaje))))
+            msm = msm.replace(i, "")
+            d += 1
+
+    simbolo = dict(simbolos,p)
+
+    huffman= Huffman()
+    print("codificando mediante el árbol de huffman...")
+    for simbolo in simbolos:
+        print("Simbolo: %S, Codificando:%s"%(simbolo,Huffman.mostrar_simbolos_codificados(simbolo)))
+
+    c= Huffman.codificacion(mensaje)
+    print("Mensaje que se esta codificando es ", mensaje)
+    print("Codificacion en bits: ", c)
+    print("Longitud del mensaje: ", len(mensaje))
+
+    data = c
+
+    print("Ahora vamos a descodificar...")
+    de= Huffman.descodificar(data)
+    print("El códigp binario para descodificar es: ", data)
+    print("El mensaje descodificado es: ", de)
+    
