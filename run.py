@@ -1,10 +1,12 @@
+from ejercicio1 import *
 from ejercicio2 import *
 from ejercicio3 import *
-from ejercicio1 import *
+
 
 if __name__ == '__main__':
     ejercicio = int(input("Introduzca el ejercicio que desea ejecutar: "))
-
+    if ejercicio == 1:
+        dibujar_los_nodos(nodos[0])
     if ejercicio == 2:
         print("A continuación lista con todos los nombres de los pokemons: ", nombres)
         print("Los pokemons bul son:" , bul)
