@@ -9,12 +9,7 @@ nombres = []
 for i in range(1, len(l)):
     nombres.append(l[i][1]) # con esto creamos una lista para los nombres de los pokemons
 
-#for row in reader:
-    #print(row)
-
-
-
-
+print(nombres)
 
 class Nodo:
     def __init__(self,dato):
@@ -76,4 +71,3 @@ class Nodo:
 
     def buscar(self, busqueda):
         return self.buscar(self.raiz, busqueda)
-        
