@@ -8,8 +8,12 @@ l = list(reader)
 nombres = []
 for i in range(1, len(l)):
     nombres.append(l[i][1]) # con esto creamos una lista para los nombres de los pokemons
-
 print(nombres)
+bul1= list(filter(lambda x: "Bul" in x, nombres))
+bul2 = list(filter(lambda x: "bul" in x, nombres))
+bul = bul1 + bul2
+print("Los pokemons bul son:" , bul)
+
 
 class Nodo:
     def __init__(self,dato):
