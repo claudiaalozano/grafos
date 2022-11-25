@@ -1,5 +1,5 @@
 # grafos
-Mi dirección de GitHub es: 
+Mi dirección de GitHub es: https://github.com/claudiaalozano/grafos.git
 En este trabajo he realizado elcódigo para áboles binarios, de huffman y grafos. La tarea se dividía en tres ejercicios.
 
 ### Ejercicio 1
