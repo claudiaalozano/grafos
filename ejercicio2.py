@@ -1,13 +1,18 @@
 import csv
+import numpy as np
 import pandas as pd
 
-#f = open("pokemon.csv")
-#reader = csv.reader(f)
+f = open("pokemon.csv")
+reader = csv.reader(f)
+l = list(reader)
+nombres = []
+for i in range(1, len(l)):
+    nombres.append(l[i][1]) # con esto creamos una lista para los nombres de los pokemons
+
 #for row in reader:
     #print(row)
 
-data = pd.read_csv("pokemon.csv", header = 0)
-print(data)
+
 
 
 
@@ -16,3 +21,59 @@ class Nodo:
         self.dato = dato 
         self.izquierda = None 
         self.derecha = None 
+
+    def agregar_recursivo(self, nodo, dato):
+        if dato < nodo.dato:
+            if nodo.izquierda is None:
+                nodo.izquierda = Nodo(dato)
+            else:
+                self.agregar_recursivo(nodo.izquierda, dato)
+        else:
+            if nodo.derecha is None:
+                nodo.derecha = Nodo(dato)
+            else:
+                self.agregar_recursivo(nodo.derecha, dato)
+    
+    def inorder_recursivo(self, nodo):
+        if nodo is not None:
+            self.inorder_recursivo(nodo.izquierda)
+            print(nodo.dato, end=",")
+            self.inorder_recursivo(nodo.derecha)
+
+    def preorden_recursivo(self,nodo):
+        if nodo is not None:
+            print(nodo.dato, end=",")
+            self.preorden_recursivo(nodo.izquierda)
+            self.preorden_recursivo(nodo.derecha)
+    
+    def buscar(self, nodo, busqueda):
+        if nodo is None:
+            return None 
+        if nodo.dato == busqueda:
+            return nodo
+        if busqueda < nodo.dato:
+            return self.buscar(nodo.izquierda, busqueda)
+        else:
+            return self.buscar(nodo.derecha, busqueda)
+    
+    def agregar(self, dato):
+        self.agregar_recursivo(self.raiz, dato)
+    
+    def inorden(self):
+        print("Imprimiendo árbol...")
+        self.inorder_recursivo(self.raiz)
+        print("")
+
+    def preorden(self):
+        print("Imprimiendo a´rbol preorden...")
+        self.preorden_recursivo(self.raiz)
+        print("")
+    
+    def postorden(self):
+        print("Imprimiendo árbol postorden...")
+        self.postorden_recursivo(self.raiz)
+        print("")
+
+    def buscar(self, busqueda):
+        return self.buscar(self.raiz, busqueda)
+        
