@@ -3,11 +3,14 @@ import os
 
 
 class Nodo:
-    probabilidad = 0.0
-    simbolo = ""
-    codificacion = ""
-    visited = False
-    longitud = -1
+    def __init__(self,frequencia,simbolo,izquierda = None,derecha=None):
+        self.frequencia = frequencia
+        self.simbolo = simbolo
+        self.izquierda = izquierda
+        self.derecha = derecha
+        self.huff = ""
+    
+    
 
 class Huffman:
     tree = None 
