@@ -8,11 +8,24 @@ l = list(reader)
 nombres = []
 for i in range(1, len(l)):
     nombres.append(l[i][1]) # con esto creamos una lista para los nombres de los pokemons
-print(nombres)
+
 bul1= list(filter(lambda x: "Bul" in x, nombres))
 bul2 = list(filter(lambda x: "bul" in x, nombres))
 bul = bul1 + bul2
-print("Los pokemons bul son:" , bul)
+
+
+#Tipos de pokemons:
+
+tipos = []
+for i in range(1, len(l)):
+    tipos.append(l[i][2])
+
+fire = list(filter(lambda x: "Fire" in x, tipos))
+water = list(filter(lambda x: "Water" in x, tipos))
+grass = list(filter(lambda x: "Grass" in x, tipos))
+bug = list(filter(lambda x: "Bug" in x, tipos))
+
+
 
 
 class Nodo:
@@ -64,7 +77,7 @@ class Nodo:
         print("")
 
     def preorden(self):
-        print("Imprimiendo a´rbol preorden...")
+        print("Imprimiendo árbol preorden...")
         self.preorden_recursivo(self.raiz)
         print("")
     
