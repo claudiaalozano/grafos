@@ -1,5 +1,5 @@
 import os
-
+import heapq
 
 
 class Nodo:
@@ -30,3 +30,14 @@ p = [0.2, 0.17, 0.13, 0.21, 0.05, 0.09, 0.15]
 
 nodos = []
 
+for x in range(len(simbolos)):
+    heapq.heappush(nodos, Nodo(p[x], simbolos[x]))
+while len(nodos)>1:
+    izquierda=heapq.heappop(nodos)
+    derecha= heapq.heappop(nodos)
+    izquierda.huff =0
+    derecha.huff = 1
+    nuevo_nodo= Nodo(izquierda.p+derecha.p, izquierda.simbolos + derecha.simbolos, izquierda, derecha)
+    heapq.heappush(nodos, nuevo_nodo)
+
+print(Nodo(nodos[0]))

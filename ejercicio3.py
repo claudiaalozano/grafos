@@ -7,7 +7,19 @@ data = {"Nombre":["Petra","Taj Mahal", "Machu Picchu", "Pirámide de Chichén It
 df = pd.DataFrame(data, columns=['Nombre', "Ubicación", "Tipo"])
 df.to_csv("siete_maravillas", index=False)
 
-Grafo = nx.Graph()
-Grafo.add_node("Nombre")
-Grafo.add_node("Ubicación")
-Grafo.add_node("Tipo")
+class Graph:
+    def __init__(self,vertex):
+        self.vertex = vertex
+        self.graph = [[0]* vertex for i in range(vertex)]
+    
+    def add_edge(self, u, v):
+        self.graph[u-1][v-1]=1
+        self.graph[v-1][u-1]=1
+    
+    def show(self):
+        for i in self.graph:
+            for j in i:
+                print(j, end=" ")
+            print(" ")
+
+g = Graph(data)
